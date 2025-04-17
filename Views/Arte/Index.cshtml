@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Museo.Models.Arte>
+
+@{
+    ViewData["Title"] = "Obras";
+}
+
+<h1>Obras</h1>
+
+<p>
+    <a asp-action="Create">Agregar Obra</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Continente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mantenimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </th>
+            <th>
+                PrecioFinal
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Continente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mantenimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+             <td>
+                @(item.FechaRegistro == default(DateOnly) ? DateTime.Now.ToString("dd/MM/yyyy") : item.FechaRegistro.ToString("dd/MM/yyyy"))
+           </td>
+            <td>
+                @item.PrecioFinal.ToString("C")
+            </td>
+            <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
